@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tính điểm</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+    <script>
+        function createForm() {
+            let soMon = document.getElementById('soMon').value;
+            let res = '';
+            for (let i = 0; i < soMon; i++) {
+                res += 'Điểm Môn thứ ' + (i+1) + ': <input type="text" id="diemMonThu' + i + '" class="m-2"> Số tín chỉ: <input type="text" id="stcMonThu' + i + '" class="m-2"><br>'
+            }
+            res += '<button onclick="calAVGScore(' + soMon + ')" class="btn btn-primary">Tính điểm</button>'
+            document.getElementById('form').innerHTML = res;
+            return soMon;
+        }
+
+        function calAVGScore(soMon) {
+            let result = 0, stc = 0;
+            for (let i = 0; i < soMon; i++) {
+                result += transToAlpha(document.getElementById('diemMonThu' + i).value) * document.getElementById('stcMonThu' + i).value;
+                stc += document.getElementById('stcMonThu' + i).value * 1
+            }
+            console.log(stc)
+            alert(result / stc)
+        }
+
+        function transToAlpha(score) {
+            if (score < 3.95) {
+                return 0;
+            } else if (score < 4.95) {
+                return 1;
+            } else if (score < 5.45) {
+                return 1.5;
+            } else if (score < 6.45) {
+                return 2;
+            } else if (score < 6.95) {
+                return 2.5;
+            } else if (score < 7.95) {
+                return 3;
+            } else if (score < 8.45) {
+                return 3.5;
+            } else if (score < 8.95) {
+                return 3.7;
+            } else {
+                return 4;
+            }
+        }
+    </script>
+</head>
+<body>
+<center>
+    <h1>Tính điểm TB hệ 4</h1>
+
+    <div class="container">
+        <div class="input-group m-3">
+            <input type="text" class="form-control" placeholder="Số tín chỉ" aria-label="Recipient's username"
+                   id="soMon" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+                <button class="input-group-text" id="basic-addon2" onclick="createForm()">Tạo form</button>
+            </div>
+        </div>
+
+        <div id="form">
+
+        </div>
+    </div>
+
+
+</center>
+</body>
+</html>
