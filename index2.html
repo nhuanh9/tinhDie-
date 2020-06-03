@@ -21,7 +21,7 @@
             for (let i = 0; i < soMon; i++) {
                 res += '<input type="text" id="diemMonThu' + i + '" class="mt-3 ml-5 mb-3 mr-3 col-lg-3" placeholder="Điểm môn thành phần thứ ' + i + '"><input type="text" id="diemThiMonThu' + i + '" class="mt-3 ml-5 mb-3 mr-3 col-lg-3" placeholder="Điểm thi môn thứ ' + i + '"><input type="text" id="stcMonThu' + i + '" class="mt-3 ml-5 mb-3 mr-3 col-lg-3" placeholder=" Số tín chỉ môn thứ ' + i + ' ">'
             }
-            res += '<button onclick="calAVGScore(' + soMon + ')" class="btn btn-primary">Tính điểm</button>'
+            res += '<div class="col-12"><button onclick="calAVGScore(' + soMon + ')" class="btn btn-primary">Tính điểm</button></div>'
             document.getElementById('form').innerHTML = res;
             return soMon;
         }
@@ -75,7 +75,7 @@
             </div>
         </div>
 
-        <div id="form">
+        <div id="form" class="row">
 
         </div>
     </div>
